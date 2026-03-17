@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Italian Grammar Hub</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f8; }
+    header { background: #1e2a38; color: white; padding: 20px; text-align: center; }
+    nav { display: flex; justify-content: center; gap: 10px; background: #fff; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex-wrap: wrap; }
+    nav button { padding: 10px 14px; border: none; background: #3498db; color: white; border-radius: 8px; cursor: pointer; }
+    nav button:hover { background: #2980b9; }
+    .page { display: none; padding: 20px; }
+    .active { display: block; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+    .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .card img { width: 100%; height: auto; display:block; }
+    .card p { padding: 10px; margin: 0; text-align: center; }
+    audio { width: 100%; margin-top: 10px; }
+    footer { text-align: center; padding: 15px; background: #1e2a38; color: white; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🇮🇹 Italian Grammar Hub</h1>
+  <p>Visual grammar + audio lessons</p>
+</header>
+
+<nav>
+  <button onclick="showPage('gallery')">Gallery</button>
+  <button onclick="showPage('verbs')">Verbs</button>
+  <button onclick="showPage('tenses')">Tenses</button>
+  <button onclick="showPage('articles')">Articles</button>
+  <button onclick="showPage('audio')">Audio</button>
+</nav>
+
+<!-- GALLERY (15 CARDS) -->
+<section id="gallery" class="page active">
+  <h2>All Cards</h2>
+  <div class="gallery">
+
+    <!-- 1-5 VERBS -->
+    <div class="card"><img src="images/essere.png"><p>ESSERE</p></div>
+    <div class="card"><img src="images/avere.png"><p>AVERE</p></div>
+    <div class="card"><img src="images/regular-are.png"><p>-ARE verbs</p></div>
+    <div class="card"><img src="images/regular-ere.png"><p>-ERE verbs</p></div>
+    <div class="card"><img src="images/regular-ire.png"><p>-IRE verbs</p></div>
+
+    <!-- 6-10 TENSES -->
+    <div class="card"><img src="images/presente.png"><p>Present</p></div>
+    <div class="card"><img src="images/passato-prossimo.png"><p>Passato Prossimo</p></div>
+    <div class="card"><img src="images/imperfetto.png"><p>Imperfetto</p></div>
+    <div class="card"><img src="images/futuro.png"><p>Future</p></div>
+    <div class="card"><img src="images/condizionale.png"><p>Conditional</p></div>
+
+    <!-- 11-15 OTHER -->
+    <div class="card"><img src="images/articoli.png"><p>Articles</p></div>
+    <div class="card"><img src="images/prepositions.png"><p>Prepositions</p></div>
+    <div class="card"><img src="images/pronouns.png"><p>Pronouns</p></div>
+    <div class="card"><img src="images/adjectives.png"><p>Adjectives</p></div>
+    <div class="card"><img src="images/questions.png"><p>Questions</p></div>
+
+  </div>
+</section>
+
+<!-- VERBS -->
+<section id="verbs" class="page">
+  <h2>Verbs</h2>
+  <div class="gallery">
+    <div class="card"><img src="images/essere.png"><p>ESSERE</p></div>
+    <div class="card"><img src="images/avere.png"><p>AVERE</p></div>
+    <div class="card"><img src="images/regular-are.png"><p>-ARE verbs</p></div>
+    <div class="card"><img src="images/regular-ere.png"><p>-ERE verbs</p></div>
+    <div class="card"><img src="images/regular-ire.png"><p>-IRE verbs</p></div>
+  </div>
+</section>
+
+<!-- TENSES -->
+<section id="tenses" class="page">
+  <h2>Tenses</h2>
+  <div class="gallery">
+    <div class="card"><img src="images/presente.png"><p>Present</p></div>
+    <div class="card"><img src="images/passato-prossimo.png"><p>Passato Prossimo</p></div>
+    <div class="card"><img src="images/imperfetto.png"><p>Imperfetto</p></div>
+    <div class="card"><img src="images/futuro.png"><p>Future</p></div>
+    <div class="card"><img src="images/condizionale.png"><p>Conditional</p></div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section id="articles" class="page">
+  <h2>Articles & Basics</h2>
+  <div class="gallery">
+    <div class="card"><img src="images/articoli.png"><p>Articles</p></div>
+    <div class="card"><img src="images/prepositions.png"><p>Prepositions</p></div>
+    <div class="card"><img src="images/pronouns.png"><p>Pronouns</p></div>
+    <div class="card"><img src="images/adjectives.png"><p>Adjectives</p></div>
+    <div class="card"><img src="images/questions.png"><p>Questions</p></div>
+  </div>
+</section>
+
+<!-- AUDIO -->
+<section id="audio" class="page">
+  <h2>Audio Lessons</h2>
+
+  <div class="card">
+    <p>ESSERE explanation</p>
+    <audio controls><source src="audio/essere.mp3" type="audio/mpeg"></audio>
+  </div>
+
+  <div class="card">
+    <p>Present tense explanation</p>
+    <audio controls><source src="audio/presente.mp3" type="audio/mpeg"></audio>
+  </div>
+
+</section>
+
+<footer>
+  <p>Made with ❤️ for Italian learners</p>
+</footer>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
+</html>
