@@ -13,11 +13,34 @@
     .page { display: none; padding: 20px; }
     .active { display: block; }
     .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
-    .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; }
     .card img { width: 100%; height: auto; display:block; }
     .card p { padding: 10px; margin: 0; text-align: center; }
     audio { width: 100%; margin-top: 10px; }
     footer { text-align: center; padding: 15px; background: #1e2a38; color: white; margin-top: 20px; }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .modal.close-area {
+      cursor: pointer;
+    }
+
   </style>
 </head>
 <body>
@@ -35,31 +58,28 @@
   <button onclick="showPage('audio')">Audio</button>
 </nav>
 
-<!-- GALLERY (15 CARDS) -->
+<!-- GALLERY -->
 <section id="gallery" class="page active">
   <h2>All Cards</h2>
   <div class="gallery">
 
-    <!-- 1-5 VERBS -->
-    <div class="card"><img src="images/essere.jpg"><p>ESSERE</p></div>
-    <div class="card"><img src="images/avere.png"><p>AVERE</p></div>
-    <div class="card"><img src="images/regular-are.png"><p>-ARE verbs</p></div>
-    <div class="card"><img src="images/regular-ere.png"><p>-ERE verbs</p></div>
-    <div class="card"><img src="images/regular-ire.png"><p>-IRE verbs</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/essere.jpg"><p>ESSERE</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/avere.png"><p>AVERE</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-are.png"><p>-ARE verbs</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-ere.png"><p>-ERE verbs</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-ire.png"><p>-IRE verbs</p></div>
 
-    <!-- 6-10 TENSES -->
-    <div class="card"><img src="images/presente.png"><p>Present</p></div>
-    <div class="card"><img src="images/passato-prossimo.png"><p>Passato Prossimo</p></div>
-    <div class="card"><img src="images/imperfetto.png"><p>Imperfetto</p></div>
-    <div class="card"><img src="images/futuro.png"><p>Future</p></div>
-    <div class="card"><img src="images/condizionale.png"><p>Conditional</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/presente.png"><p>Present</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/passato-prossimo.png"><p>Passato Prossimo</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/imperfetto.png"><p>Imperfetto</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/futuro.png"><p>Future</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/condizionale.png"><p>Conditional</p></div>
 
-    <!-- 11-15 OTHER -->
-    <div class="card"><img src="images/articoli.png"><p>Articles</p></div>
-    <div class="card"><img src="images/prepositions.png"><p>Prepositions</p></div>
-    <div class="card"><img src="images/pronouns.png"><p>Pronouns</p></div>
-    <div class="card"><img src="images/adjectives.png"><p>Adjectives</p></div>
-    <div class="card"><img src="images/questions.png"><p>Questions</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/articoli.png"><p>Articles</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/prepositions.png"><p>Prepositions</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/pronouns.png"><p>Pronouns</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/adjectives.png"><p>Adjectives</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/questions.png"><p>Questions</p></div>
 
   </div>
 </section>
@@ -68,11 +88,11 @@
 <section id="verbs" class="page">
   <h2>Verbs</h2>
   <div class="gallery">
-    <div class="card"><img src="images/essere.png"><p>ESSERE</p></div>
-    <div class="card"><img src="images/avere.png"><p>AVERE</p></div>
-    <div class="card"><img src="images/regular-are.png"><p>-ARE verbs</p></div>
-    <div class="card"><img src="images/regular-ere.png"><p>-ERE verbs</p></div>
-    <div class="card"><img src="images/regular-ire.png"><p>-IRE verbs</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/essere.png"><p>ESSERE</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/avere.png"><p>AVERE</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-are.png"><p>-ARE verbs</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-ere.png"><p>-ERE verbs</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-ire.png"><p>-IRE verbs</p></div>
   </div>
 </section>
 
@@ -80,11 +100,11 @@
 <section id="tenses" class="page">
   <h2>Tenses</h2>
   <div class="gallery">
-    <div class="card"><img src="images/presente.png"><p>Present</p></div>
-    <div class="card"><img src="images/passato-prossimo.png"><p>Passato Prossimo</p></div>
-    <div class="card"><img src="images/imperfetto.png"><p>Imperfetto</p></div>
-    <div class="card"><img src="images/futuro.png"><p>Future</p></div>
-    <div class="card"><img src="images/condizionale.png"><p>Conditional</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/presente.png"><p>Present</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/passato-prossimo.png"><p>Passato Prossimo</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/imperfetto.png"><p>Imperfetto</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/futuro.png"><p>Future</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/condizionale.png"><p>Conditional</p></div>
   </div>
 </section>
 
@@ -92,29 +112,25 @@
 <section id="articles" class="page">
   <h2>Articles & Basics</h2>
   <div class="gallery">
-    <div class="card"><img src="images/articoli.png"><p>Articles</p></div>
-    <div class="card"><img src="images/prepositions.png"><p>Prepositions</p></div>
-    <div class="card"><img src="images/pronouns.png"><p>Pronouns</p></div>
-    <div class="card"><img src="images/adjectives.png"><p>Adjectives</p></div>
-    <div class="card"><img src="images/questions.png"><p>Questions</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/articoli.png"><p>Articles</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/prepositions.png"><p>Prepositions</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/pronouns.png"><p>Pronouns</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/adjectives.png"><p>Adjectives</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/questions.png"><p>Questions</p></div>
   </div>
 </section>
 
 <!-- AUDIO -->
 <section id="audio" class="page">
   <h2>Audio Lessons</h2>
-
-  <div class="card">
-    <p>ESSERE explanation</p>
-    <audio controls><source src="audio/essere.mp3" type="audio/mpeg"></audio>
-  </div>
-
-  <div class="card">
-    <p>Present tense explanation</p>
-    <audio controls><source src="audio/presente.mp3" type="audio/mpeg"></audio>
-  </div>
-
+  <div class="card"><p>ESSERE explanation</p><audio controls><source src="audio/essere.mp3" type="audio/mpeg"></audio></div>
+  <div class="card"><p>Present tense explanation</p><audio controls><source src="audio/presente.mp3" type="audio/mpeg"></audio></div>
 </section>
+
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="closeModal()">
+  <img id="modalImg">
+</div>
 
 <footer>
   <p>Made with ❤️ for Italian learners</p>
@@ -124,6 +140,18 @@
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+}
+
+function openModal(card){
+  const img = card.querySelector('img');
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  modal.style.display = 'flex';
+  modalImg.src = img.src;
+}
+
+function closeModal(){
+  document.getElementById('modal').style.display = 'none';
 }
 </script>
 
