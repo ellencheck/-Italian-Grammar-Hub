@@ -151,3 +151,26 @@ function closeModal(){
 
 </body>
 </html>
+<footer>
+  <p>Made with ❤️ for Italian learners</p>
+</footer>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function openModal(card){
+  const img = card.querySelector('img');
+  document.getElementById('modal').style.display = 'flex';
+  document.getElementById('modalImg').src = img.src;
+}
+
+function closeModal(){
+  document.getElementById('modal').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
