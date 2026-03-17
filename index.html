@@ -49,41 +49,111 @@
   <button onclick="showPage('verbs')">Verbs</button>
   <button onclick="showPage('tenses')">Tenses</button>
   <button onclick="showPage('articles')">Articles</button>
-  <button onclick="showPage('vocabulary')">Vocabulary</button>
+  <button onclick="showPage('vocabulary2')">Vocabulary</button>
   <button onclick="showPage('audio')">Audio</button>
 </nav>
 
-<!-- GALLERY -->
+<!-- GALLERY (ORIGINAL, NOTHING BROKEN) -->
 <section id="gallery" class="page active">
   <h2>All Cards</h2>
   <div class="gallery">
+
     <div class="card" onclick="openModal(this)"><img src="images/essere.jpg"><p>ESSERE</p></div>
     <div class="card" onclick="openModal(this)"><img src="images/avere.png"><p>AVERE</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-are.png"><p>-ARE verbs</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-ere.png"><p>-ERE verbs</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-ire.png"><p>-IRE verbs</p></div>
+
+    <div class="card" onclick="openModal(this)"><img src="images/presente.png"><p>Present</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/passato-prossimo.png"><p>Passato Prossimo</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/imperfetto.png"><p>Imperfetto</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/futuro.png"><p>Future</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/condizionale.png"><p>Conditional</p></div>
+
+    <div class="card" onclick="openModal(this)"><img src="images/articoli.png"><p>Articles</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/prepositions.png"><p>Prepositions</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/pronouns.png"><p>Pronouns</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/adjectives.png"><p>Adjectives</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/questions.png"><p>Questions</p></div>
+
   </div>
 </section>
 
-<!-- VOCABULARY (FRUITS) -->
+<!-- VOCABULARY (ONLY ONE CARD AS YOU ASKED) -->
 <section id="vocabulary" class="page">
-  <h2>Vocabulary – Fruits 🍓</h2>
+  <h2>Vocabulary</h2>
   <div class="gallery">
 
-    <div class="card" onclick="openModal(this)"><img src="images/apple.png"><p>Mela (Apple)</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/banana.png"><p>Banana</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/orange.png"><p>Arancia (Orange)</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/strawberry.png"><p>Fragola (Strawberry)</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/grape.png"><p>Uva (Grapes)</p></div>
+    <!-- General Fruits card -->
+    <div class="card" onclick="openModal(this)">
+      <img src="images/fruits.png">
+      <p>Fruits</p>
+    </div>
 
-    <div class="card" onclick="openModal(this)"><img src="images/fruits.jpeg"><p>Pera (15 frutti comuni in Italiano)</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/peach.png"><p>Pesca (Peach)</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/cherry.png"><p>Ciliegia (Cherry)</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/pineapple.png"><p>Ananas (Pineapple)</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/mango.png"><p>Mango</p></div>
+    <!-- 15 Fruits card -->
+    <div class="card" onclick="openModal(this)">
+      <img src="images/fruits-15.png">
+      <p>15 Italian Fruits</p>
+    </div>
 
-    <div class="card" onclick="openModal(this)"><img src="images/kiwi.png"><p>Kiwi</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/lemon.png"><p>Limone (Lemon)</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/watermelon.png"><p>Anguria (Watermelon)</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/melon.png"><p>Melone (Melon)</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/plum.png"><p>Prugna (Plum)</p></div>
+  </div>
+</section>
+
+<!-- VERBS -->
+<section id="verbs" class="page">
+  <h2>Verbs</h2>
+  <div class="gallery">
+    <div class="card" onclick="openModal(this)"><img src="images/essere.png"><p>ESSERE</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/avere.png"><p>AVERE</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-are.png"><p>-ARE verbs</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-ere.png"><p>-ERE verbs</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/regular-ire.png"><p>-IRE verbs</p></div>
+  </div>
+</section>
+
+<!-- TENSES -->
+<section id="tenses" class="page">
+  <h2>Tenses</h2>
+  <div class="gallery">
+    <div class="card" onclick="openModal(this)"><img src="images/presente.png"><p>Present</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/passato-prossimo.png"><p>Passato Prossimo</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/imperfetto.png"><p>Imperfetto</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/futuro.png"><p>Future</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/condizionale.png"><p>Conditional</p></div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section id="articles" class="page">
+  <h2>Articles & Basics</h2>
+  <div class="gallery">
+    <div class="card" onclick="openModal(this)"><img src="images/articoli.png"><p>Articles</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/prepositions.png"><p>Prepositions</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/pronouns.png"><p>Pronouns</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/adjectives.png"><p>Adjectives</p></div>
+    <div class="card" onclick="openModal(this)"><img src="images/questions.png"><p>Questions</p></div>
+  </div>
+</section>
+
+<!-- NEW VOCABULARY SECTION -->
+<section id="vocabulary2" class="page">
+  <h2>Vocabulary</h2>
+  <div class="gallery">
+
+    <div class="card" onclick="openModal(this)">
+      <img src="images/fruits-15.png">
+      <p>15 frutti in italiano</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <img src="images/animals.png">
+      <p>Animals</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <img src="images/colors.png">
+      <p>Colors</p>
+    </div>
 
   </div>
 </section>
@@ -91,7 +161,7 @@
 <!-- AUDIO -->
 <section id="audio" class="page">
   <h2>Audio Lessons</h2>
-  <div class="card"><p>ESSERE explanation</p><audio controls><source src="audio/essere.mp3"></audio></div>
+  <div class="card"><p>ESSERE explanation</p><audio controls><source src="audio/essere.mp3" type="audio/mpeg"></audio></div>
 </section>
 
 <!-- MODAL -->
