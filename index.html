@@ -61,7 +61,7 @@
       gap: 20px;
     }
 
-    /* --- Карточки --- */
+    /* --- Карточки с прокруткой картинок --- */
     .card {
       background: white;
       border-radius: 15px;
@@ -71,7 +71,7 @@
       transition: transform 0.3s, box-shadow 0.3s;
       display: flex;
       flex-direction: column;
-      height: 100%;
+      height: 350px; /* фиксированная высота карточки */
     }
 
     .card:hover {
@@ -79,17 +79,17 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.18);
     }
 
-    .card img {
-      width: 100%;
-      height: 320px;       /* Большие изображения */
-      object-fit: cover;   /* Заполняет всю карточку */
-      display: block;
-      background: #fff;
-      transition: transform 0.3s;
+    .img-container {
+      flex-grow: 1;
+      overflow: auto; /* появляется скролл, если картинка высокая */
     }
 
-    .card img:hover {
-      transform: scale(1.05);
+    .img-container img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain; /* картинка полностью помещается */
+      cursor: grab;
     }
 
     .card p {
@@ -161,31 +161,98 @@
   <div class="gallery">
 
     <!-- VERBS -->
-    <div class="card" onclick="openModal(this)"><img src="images/essere.png"><p>ESSERE</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/avere.png"><p>AVERE</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/regular-are.png"><p>-ARE</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/regular-ere.png"><p>-ERE</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/regular-ire.png"><p>-IRE</p></div>
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/essere.png"></div>
+      <p>ESSERE</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/avere.png"></div>
+      <p>AVERE</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/regular-are.png"></div>
+      <p>-ARE</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/regular-ere.png"></div>
+      <p>-ERE</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/regular-ire.png"></div>
+      <p>-IRE</p>
+    </div>
 
     <!-- TENSES -->
-    <div class="card" onclick="openModal(this)"><img src="images/presente.png"><p>Present</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/passato-prossimo.png"><p>Passato Prossimo</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/imperfetto.png"><p>Imperfetto</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/futuro.png"><p>Future</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/condizionale.png"><p>Conditional</p></div>
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/presente.png"></div>
+      <p>Present</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/passato-prossimo.png"></div>
+      <p>Passato Prossimo</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/imperfetto.png"></div>
+      <p>Imperfetto</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/futuro.png"></div>
+      <p>Future</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/condizionale.png"></div>
+      <p>Conditional</p>
+    </div>
 
     <!-- ARTICLES -->
-    <div class="card" onclick="openModal(this)"><img src="images/articoli.png"><p>Articles</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/prepositions.png"><p>Prepositions</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/pronouns.png"><p>Pronouns</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/adjectives.png"><p>Adjectives</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/questions.png"><p>Questions</p></div>
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/articoli.png"></div>
+      <p>Articles</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/prepositions.png"></div>
+      <p>Prepositions</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/pronouns.png"></div>
+      <p>Pronouns</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/adjectives.png"></div>
+      <p>Adjectives</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/questions.png"></div>
+      <p>Questions</p>
+    </div>
 
     <!-- VOCABULARY -->
-    <div class="card" onclick="openModal(this)"><img src="images/fruits.png"><p>Fruits</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/fruits-15.jpeg"><p>15 frutti in italiano</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/colors.png"><p>Colors</p></div>
-     <div class="card" onclick="openModal(this)"><img src="images/diminutivus.png"><p>Diminutivus</p></div>
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/fruits.png"></div>
+      <p>Fruits</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/fruits-15.jpeg"></div>
+      <p>15 frutti in italiano</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/colors.png"></div>
+      <p>Colors</p>
+    </div>
 
   </div>
 </section>
@@ -194,9 +261,20 @@
 <section id="verbs" class="page">
   <h2>Verbs</h2>
   <div class="gallery">
-    <div class="card" onclick="openModal(this)"><img src="images/essere.png"><p>ESSERE</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/avere.png"><p>AVERE</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/regular-are.png"><p>-ARE</p></div>
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/essere.png"></div>
+      <p>ESSERE</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/avere.png"></div>
+      <p>AVERE</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/regular-are.png"></div>
+      <p>-ARE</p>
+    </div>
   </div>
 </section>
 
@@ -204,9 +282,20 @@
 <section id="tenses" class="page">
   <h2>Tenses</h2>
   <div class="gallery">
-    <div class="card" onclick="openModal(this)"><img src="images/presente.png"><p>Present</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/futuro.png"><p>Future</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/imperfetto.png"><p>Imperfetto</p></div>
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/presente.png"></div>
+      <p>Present</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/futuro.png"></div>
+      <p>Future</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/imperfetto.png"></div>
+      <p>Imperfetto</p>
+    </div>
   </div>
 </section>
 
@@ -214,9 +303,20 @@
 <section id="articles" class="page">
   <h2>Articles</h2>
   <div class="gallery">
-    <div class="card" onclick="openModal(this)"><img src="images/articoli.png"><p>Articles</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/prepositions.png"><p>Prepositions</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/pronouns.png"><p>Pronouns</p></div>
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/articoli.png"></div>
+      <p>Articles</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/prepositions.png"></div>
+      <p>Prepositions</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/pronouns.png"></div>
+      <p>Pronouns</p>
+    </div>
   </div>
 </section>
 
@@ -224,9 +324,20 @@
 <section id="vocabulary" class="page">
   <h2>Vocabulary</h2>
   <div class="gallery">
-    <div class="card" onclick="openModal(this)"><img src="images/fruits.png"><p>Fruits</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/fruits-15.jpeg"><p>15 frutti in italiano</p></div>
-    <div class="card" onclick="openModal(this)"><img src="images/colors.png"><p>Colors</p></div>
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/fruits.png"></div>
+      <p>Fruits</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/fruits-15.jpeg"></div>
+      <p>15 frutti in italiano</p>
+    </div>
+
+    <div class="card" onclick="openModal(this)">
+      <div class="img-container"><img src="images/colors.png"></div>
+      <p>Colors</p>
+    </div>
   </div>
 </section>
 
