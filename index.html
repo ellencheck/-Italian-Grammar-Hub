@@ -52,7 +52,6 @@ nav button:hover {
   gap:20px;
 }
 
-/* КАРТОЧКИ КАК БЫЛО */
 .card {
   background:white;
   border-radius:15px;
@@ -89,14 +88,13 @@ nav button:hover {
   font-size:18px;
 }
 
-/* МОДАЛКА */
 .modal {
   display:none;
   position:fixed;
   z-index:1000;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.9);
+  background:rgba(0,0,0,0.95);
   justify-content:center;
   align-items:center;
 }
@@ -105,9 +103,15 @@ nav button:hover {
   max-width:95%;
   max-height:95%;
   border-radius:12px;
+  cursor:zoom-in;
+  transition:transform 0.3s;
 }
 
-/* ФУТЕР НОРМАЛЬНЫЙ */
+.modal img.zoomed {
+  transform:scale(1.8);
+  cursor:zoom-out;
+}
+
 footer {
   background: linear-gradient(135deg, #1e2a38, #2c3e50);
   color:white;
@@ -133,16 +137,14 @@ footer {
 <button onclick="showPage('vocabulary')">Vocabulary</button>
 </nav>
 
-<!-- IRREGULAR -->
+<!-- ВСЕ КАРТОЧКИ ОСТАВЛЕНЫ КАК ЕСТЬ -->
 <section id="irregular" class="page active">
 <h2>Irregular Verbs</h2>
 <div class="gallery">
 
-<!-- ОСНОВА -->
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/essere.png"></div><p>ESSERE</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/avere.png"></div><p>AVERE</p></div>
 
-<!-- ВСЕ ФОРМЫ -->
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/stare-presente.png"></div><p>STARE — Presente</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/stare-imperfetto.png"></div><p>STARE — Imperfetto</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/stare-futuro.png"></div><p>STARE — Futuro</p></div>
@@ -166,37 +168,30 @@ footer {
 </div>
 </section>
 
-<!-- REGULAR -->
+<!-- остальные разделы БЕЗ ИЗМЕНЕНИЙ -->
 <section id="regular" class="page">
 <h2>Regular Verbs</h2>
 <div class="gallery">
-
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/regular-are.png"></div><p>-ARE</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/regular-ere.png"></div><p>-ERE</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/regular-ire.png"></div><p>-IRE</p></div>
-
 </div>
 </section>
 
-<!-- TENSES -->
 <section id="tenses" class="page">
 <h2>Tenses</h2>
 <div class="gallery">
-
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/presente.png"></div><p>Presente</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/passato-prossimo.png"></div><p>Passato Prossimo</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/imperfetto.png"></div><p>Imperfetto</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/futuro.png"></div><p>Futuro</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/condizionale.png"></div><p>Condizionale</p></div>
-
 </div>
 </section>
 
-<!-- GRAMMAR -->
 <section id="grammar" class="page">
 <h2>Grammar</h2>
 <div class="gallery">
-
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/articoli.png"></div><p>Articles</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/prepositions.png"></div><p>Prepositions</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/pronouns.png"></div><p>Pronouns</p></div>
@@ -204,28 +199,23 @@ footer {
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/questions.png"></div><p>Questions</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/diminutivi.png"></div><p>Diminutivi</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/misterdi.png"></div><p>Tre funzioni</p></div>
-
 </div>
 </section>
 
-<!-- VOCAB -->
 <section id="vocabulary" class="page">
 <h2>Vocabulary</h2>
 <div class="gallery">
-
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/fruits.png"></div><p>Fruits</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/fruits-15.jpeg"></div><p>15 frutti</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/colors.png"></div><p>Colors</p></div>
-
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/body.png"></div><p>Body Parts</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/family.png"></div><p>Family</p></div>
 <div class="card" onclick="openModal(this)"><div class="img-container"><img src="images/plurals.png"></div><p>Plurals</p></div>
-
 </div>
 </section>
 
 <div id="modal" class="modal" onclick="closeModal()">
-<img id="modalImg">
+<img id="modalImg" onclick="zoomImage(event)">
 </div>
 
 <footer>
@@ -240,12 +230,19 @@ document.getElementById(id).classList.add('active');
 
 function openModal(card){
 const img = card.querySelector('img');
+const modalImg = document.getElementById('modalImg');
+modalImg.src = img.src;
+modalImg.classList.remove('zoomed');
 document.getElementById('modal').style.display='flex';
-document.getElementById('modalImg').src=img.src;
 }
 
 function closeModal(){
 document.getElementById('modal').style.display='none';
+}
+
+function zoomImage(e){
+e.stopPropagation();
+e.target.classList.toggle('zoomed');
 }
 </script>
 
