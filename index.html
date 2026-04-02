@@ -1,350 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Italian Grammar Hub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Italian Grammar Hub</title>
 
-  <style>
-    /* --- Общие стили --- */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-    }
+<style>
+body { margin:0; font-family:Arial; background:#f4f6f8; }
 
-    header {
-      background: #1e2a38;
-      color: white;
-      padding: 25px 20px;
-      text-align: center;
-    }
+header {
+  background:#1e2a38;
+  color:white;
+  padding:25px;
+  text-align:center;
+}
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      background: #fff;
-      padding: 12px 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      flex-wrap: wrap;
-    }
+nav {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  background:#fff;
+  padding:12px;
+  flex-wrap:wrap;
+}
 
-    nav button {
-      padding: 12px 16px;
-      border: none;
-      background: #3498db;
-      color: white;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.3s;
-    }
+nav button {
+  padding:10px 15px;
+  border:none;
+  background:#3498db;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+}
 
-    nav button:hover {
-      background: #2980b9;
-    }
+.page { display:none; padding:20px; }
+.active { display:block; }
 
-    .page {
-      display: none;
-      padding: 25px 20px;
-    }
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
 
-    .active {
-      display: block;
-    }
+.card {
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 6px 15px rgba(0,0,0,0.1);
+  cursor:pointer;
+  height:320px;
+  display:flex;
+  flex-direction:column;
+}
 
-    /* --- Галерея --- */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
+.img-container { flex-grow:1; overflow:auto; }
 
-    /* --- Карточки с прокруткой картинок --- */
-    .card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-      height: 350px; /* фиксированная высота карточки */
-    }
+.img-container img { width:100%; }
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-    }
+.card p { text-align:center; padding:10px; }
 
-    .img-container {
-      flex-grow: 1;
-      overflow: auto; /* появляется скролл, если картинка высокая */
-    }
+.modal {
+  display:none;
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+}
 
-    .img-container img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      object-fit: contain; /* картинка полностью помещается */
-      cursor: grab;
-    }
+.modal img {
+  max-width:90%;
+  max-height:90%;
+}
 
-    .card p {
-      padding: 15px 10px;
-      margin: 0;
-      text-align: center;
-      font-size: 18px;
-      font-weight: 500;
-      flex-shrink: 0;
-      background: #fff;
-    }
-
-    audio {
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    /* --- Модальное окно --- */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal img {
-      max-width: 95%;
-      max-height: 95%;
-      border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-    }
-
-    /* --- Футер --- */
-    footer {
-      background: linear-gradient(135deg, #1e2a38, #2c3e50);
-      color: white;
-      text-align: center;
-      padding: 35px 20px;
-      margin-top: 40px;
-    }
-  </style>
+/* ФУТЕР ВЕРНУЛ */
+footer {
+  background: linear-gradient(135deg, #1e2a38, #2c3e50);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+  margin-top: 40px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>🇮🇹 Italian Grammar Hub</h1>
-  <p>Visual grammar + audio lessons</p>
+<h1>🇮🇹 Italian Grammar Hub</h1>
+<p>Visual grammar + audio lessons</p>
 </header>
 
 <nav>
-  <button onclick="showPage('gallery')">Gallery</button>
-  <button onclick="showPage('verbs')">Verbs</button>
-  <button onclick="showPage('tenses')">Tenses</button>
-  <button onclick="showPage('articles')">Articles</button>
-  <button onclick="showPage('vocabulary')">Vocabulary</button>
-  <button onclick="showPage('audio')">Audio</button>
+<button onclick="showPage('irregular')">Irregular Verbs</button>
+<button onclick="showPage('regular')">Regular Verbs</button>
+<button onclick="showPage('tenses')">Tenses</button>
+<button onclick="showPage('grammar')">Grammar</button>
+<button onclick="showPage('vocabulary')">Vocabulary</button>
+<button onclick="showPage('audio')">Audio</button>
 </nav>
 
-<!-- GALLERY -->
-<section id="gallery" class="page active">
-  <h2>All Cards</h2>
-  <div class="gallery">
+<!-- IRREGULAR -->
+<section id="irregular" class="page active">
+<h2>Irregular Verbs</h2>
+<div class="gallery">
 
-    <!-- VERBS -->
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/essere.png"></div>
-      <p>ESSERE</p>
-    </div>
+<div class="card" onclick="openModal(this)"><img src="images/essere.png"><p>ESSERE</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/avere.png"><p>AVERE</p></div>
 
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/avere.png"></div>
-      <p>AVERE</p>
-    </div>
+<div class="card" onclick="openModal(this)"><img src="images/stare-presente.png"><p>STARE — Presente</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/stare-imperfetto.png"><p>STARE — Imperfetto</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/stare-futuro.png"><p>STARE — Futuro</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/stare-passato-prossimo.png"><p>STARE — Passato</p></div>
 
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/regular-are.png"></div>
-      <p>-ARE</p>
-    </div>
+<div class="card" onclick="openModal(this)"><img src="images/essere-presente.png"><p>ESSERE — Presente</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/essere-imperfetto.png"><p>ESSERE — Imperfetto</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/essere-futuro.png"><p>ESSERE — Futuro</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/essere-passato-prossimo.png"><p>ESSERE — Passato</p></div>
 
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/regular-ere.png"></div>
-      <p>-ERE</p>
-    </div>
+<div class="card" onclick="openModal(this)"><img src="images/avere-presente.png"><p>AVERE — Presente</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/avere-imperfetto.png"><p>AVERE — Imperfetto</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/avere-futuro.png"><p>AVERE — Futuro</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/avere-passato-prossimo.png"><p>AVERE — Passato</p></div>
 
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/regular-ire.png"></div>
-      <p>-IRE</p>
-    </div>
+<div class="card" onclick="openModal(this)"><img src="images/fare-presente.png"><p>FARE — Presente</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/fare-imperfetto.png"><p>FARE — Imperfetto</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/fare-futuro.png"><p>FARE — Futuro</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/fare-passato-prossimo.png"><p>FARE — Passato</p></div>
 
-    <!-- TENSES -->
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/presente.png"></div>
-      <p>Present</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/passato-prossimo.png"></div>
-      <p>Passato Prossimo</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/imperfetto.png"></div>
-      <p>Imperfetto</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/futuro.png"></div>
-      <p>Future</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/condizionale.png"></div>
-      <p>Conditional</p>
-    </div>
-
-    <!-- ARTICLES -->
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/articoli.png"></div>
-      <p>Articles</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/prepositions.png"></div>
-      <p>Prepositions</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/pronouns.png"></div>
-      <p>Pronouns</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/adjectives.png"></div>
-      <p>Adjectives</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/questions.png"></div>
-      <p>Questions</p>
-    </div>
-
-    <!-- VOCABULARY -->
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/fruits.png"></div>
-      <p>Fruits</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/fruits-15.jpeg"></div>
-      <p>15 frutti in italiano</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/colors.png"></div>
-      <p>Colors</p>
-    </div>
-
-   <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/diminutivi.png"></div>
-      <p>Diminutivi</p>
-    </div>
-
-    <!-- NEW VERB CARDS -->
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/stare-presente.png"></div>
-      <p>STARE — Presente</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/stare-imperfetto.png"></div>
-      <p>STARE — Imperfetto</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/stare-futuro.png"></div>
-      <p>STARE — Futuro</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/stare-passato-prossimo.png"></div>
-      <p>STARE — Passato Prossimo</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/essere-presente.png"></div>
-      <p>ESSERE — Presente</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/essere-imperfetto.png"></div>
-      <p>ESSERE — Imperfetto</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/essere-futuro.png"></div>
-      <p>ESSERE — Futuro</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/essere-passato-prossimo.png"></div>
-      <p>ESSERE — Passato Prossimo</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/avere-presente.png"></div>
-      <p>AVERE — Presente</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/avere-imperfetto.png"></div>
-      <p>AVERE — Imperfetto</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/avere-futuro.png"></div>
-      <p>AVERE — Futuro</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/avere-passato-prossimo.png"></div>
-      <p>AVERE — Passato Prossimo</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/fare-presente.png"></div>
-      <p>FARE — Presente</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/fare-imperfetto.png"></div>
-      <p>FARE — Imperfetto</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/fare-futuro.png"></div>
-      <p>FARE — Futuro</p>
-    </div>
-
-    <div class="card" onclick="openModal(this)">
-      <div class="img-container"><img src="images/fare-passato-prossimo.png"></div>
-      <p>FARE — Passato Prossimo</p>
-    </div>
-
-  </div>
+</div>
 </section>
-<div id="modal" class="modal" onclick="closeModal()">
-  <img id="modalImg">
+
+<!-- REGULAR -->
+<section id="regular" class="page">
+<h2>Regular Verbs</h2>
+<div class="gallery">
+
+<div class="card" onclick="openModal(this)"><img src="images/regular-are.png"><p>-ARE</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/regular-ere.png"><p>-ERE</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/regular-ire.png"><p>-IRE</p></div>
+
+</div>
+</section>
+
+<!-- TENSES -->
+<section id="tenses" class="page">
+<h2>Tenses</h2>
+<div class="gallery">
+
+<div class="card" onclick="openModal(this)"><img src="images/presente.png"><p>Presente</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/passato-prossimo.png"><p>Passato Prossimo</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/imperfetto.png"><p>Imperfetto</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/futuro.png"><p>Futuro</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/condizionale.png"><p>Condizionale</p></div>
+
+</div>
+</section>
+
+<!-- GRAMMAR -->
+<section id="grammar" class="page">
+<h2>Grammar</h2>
+<div class="gallery">
+
+<div class="card" onclick="openModal(this)"><img src="images/articoli.png"><p>Articles</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/prepositions.png"><p>Prepositions</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/pronouns.png"><p>Pronouns</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/adjectives.png"><p>Adjectives</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/questions.png"><p>Questions</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/diminutivi.png"><p>Diminutivi</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/misterdi.png"><p>Tre funzioni</p></div>
+
+</div>
+</section>
+
+<!-- VOCAB -->
+<section id="vocabulary" class="page">
+<h2>Vocabulary</h2>
+<div class="gallery">
+
+<div class="card" onclick="openModal(this)"><img src="images/fruits.png"><p>Fruits</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/fruits-15.jpeg"><p>15 frutti</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/colors.png"><p>Colors</p></div>
+
+<div class="card" onclick="openModal(this)"><img src="images/body.png"><p>Body Parts</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/family.png"><p>Family</p></div>
+<div class="card" onclick="openModal(this)"><img src="images/plurals.png"><p>Plurals</p></div>
+
+</div>
+</section>
+
+<!-- AUDIO -->
+<section id="audio" class="page">
+<h2>Audio</h2>
+<p>Добавишь позже</p>
+</section>
+
+<div id="modal" class="modal" onclick="this.style.display='none'">
+<img id="modalImg">
 </div>
 
 <footer>
@@ -353,18 +206,14 @@
 
 <script>
 function showPage(id){
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
 }
 
 function openModal(card){
-  const img = card.querySelector('img');
-  document.getElementById('modal').style.display = 'flex';
-  document.getElementById('modalImg').src = img.src;
-}
-
-function closeModal(){
-  document.getElementById('modal').style.display = 'none';
+const img = card.querySelector('img');
+document.getElementById('modal').style.display='flex';
+document.getElementById('modalImg').src=img.src;
 }
 </script>
 
